@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="css/1.css">
+	<link href='recursos/icono.ico' rel='shortcut icon' type='image/x-icon'><!--etiqueta para icono de la web-->
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script><!--etiqueta para icono de la web-->
+	<script src="js/1.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#iS").click(function() {
+			$("#iniSesi").toggle(1500);
+		});
+	});
+	</script>
+</head>
+<body>
+	<header>
+
+		<h5 style="color: transparent;">A</h5>
+		<nav>
+			<?php 
+			session_start();
+			include "incluir/menu.zox"; ?>
+		</nav>
+		<?php
+			if(!isset($_SESSION["usuarioooo"])){
+			echo "<div id='iniSesi' style='display:none;'>";
+		} else{	
+			echo "<div id='iniSesi' style='display:block;'>";
+		}
+		 ?>
+			<?php 
+			
+			if(!isset($_SESSION["usuarioooo"])){
+				echo '<form action="php/2.php" method="post" onsubmit="return verificar()">
+					<img src="recursos/admin.png">
+					<input type="text" name="user" id="Iuser" class="formr">
+					<img src="recursos/key.png">
+					<input type="password" name="pass" id="Ipass" class="formr">
+					<input type="submit" value="Inicia Sesion" class="envFormm">
+					<a href="registrarse.php">Registrate!</a>
+				</form>
+				</div>
+				<div id="con">
+					<button id="iS">Inicia Sesion</button>
+				</div>';
+			}else{
+				echo "<b style='color: white;'>Bienvenido ".$_SESSION["usuarioooo"]."  &nbsp; |  &nbsp; </b>  <a href='php/cerrarSesion.php'>Cerrar Sesion</a></div>";
+			}
+			?>
+	</header>

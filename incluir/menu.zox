@@ -1,0 +1,36 @@
+<ul>
+<?php 
+	$actual = explode("/", strrev($_SERVER['PHP_SELF']), -1);
+	$actual = strrev($actual[0]);
+	$elemento = "Inicio";
+	$menu; 
+		if (isset($_SESSION["usuarioooo"])){
+			$menu = array( 
+			"Inicio" 		=> "index.php", 
+			"Cotizacion" 	=> "cotizacion.php", 
+			"Acerca de" 	=> "acerca_de.php");
+		}else { 
+			$menu = array( 
+			"Inicio" 		=> "index.php", 
+			"Cotizacion" 	=> "cotizacion.php", 
+			"Registrate" 	=> "registrarse.php", 
+			"Acerca de" 	=> "acerca_de.php");
+		}
+
+	foreach ($menu as $valor => $clave) {
+		if($actual == $clave){
+			echo "<li ";
+			echo "class='active'";
+			echo ">".$valor."</li>";
+			$elemento = $valor; 
+		}else{
+			echo "<a href='".$clave."''><li ";
+			echo ">".$valor."</li></a>";
+		}
+	}
+	echo "
+		<script language='javascript'>
+			window.document.title = 'Taxis | ".$elemento."'; 
+		</script>";
+?>
+</ul>
